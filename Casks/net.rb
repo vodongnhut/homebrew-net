@@ -6,18 +6,19 @@
 # scripts/release_app.py. See docs/RELEASING.md, section "Homebrew tap".
 #
 # Users install with:
-#   brew install --cask --no-quarantine vodongnhut/net/net
+#   brew install --cask vodongnhut/net/net
+#   xattr -dr com.apple.quarantine "/Applications/Nét.app"
 #
 # Current releases are ad-hoc signed `--local` previews for arm64 only, so the
-# archive name carries the `-local` suffix and `--no-quarantine` is required.
+# archive name carries the `-local` suffix and the quarantine flag must be
+# cleared by hand (Homebrew 7 removed `--no-quarantine`).
 # When notarized builds ship, drop the suffix and the Gatekeeper caveat, and
 # restore the `arch arm:/intel:` form with one sha256 per architecture.
 cask "net" do
   version "0.7.0"
   sha256 "10e8de35913523c81096e66355ff8fb87c460500905e9d7996f5127b1346a84d"
 
-  url "https://github.com/vodongnhut/net-releases/releases/download/v#{version}/Net-#{version}-arm64-local.zip",
-      verified: "github.com/vodongnhut/net-releases/"
+  url "https://github.com/vodongnhut/net-releases/releases/download/v#{version}/Net-#{version}-arm64-local.zip"
   name "Nét"
   desc "Menu-bar writing assistant that corrects or translates text via your AI endpoint"
   homepage "https://github.com/vodongnhut/net-releases"
@@ -46,9 +47,7 @@ cask "net" do
 
   caveats <<~EOS
     This build is ad-hoc signed and not notarized, so Gatekeeper blocks it
-    after a quarantined download. Install with
-      brew install --cask --no-quarantine vodongnhut/net/net
-    or clear the flag afterwards with
+    after a quarantined download. Clear the flag once before the first launch:
       xattr -dr com.apple.quarantine "/Applications/Nét.app"
 
     Nét reads and replaces unsent Slack drafts only after you grant it
