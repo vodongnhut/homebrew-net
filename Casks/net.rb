@@ -15,8 +15,8 @@
 # When notarized builds ship, drop the suffix and the Gatekeeper caveat, and
 # restore the `arch arm:/intel:` form with one sha256 per architecture.
 cask "net" do
-  version "0.7.0"
-  sha256 "10e8de35913523c81096e66355ff8fb87c460500905e9d7996f5127b1346a84d"
+  version "0.7.1"
+  sha256 "b542c555b0d92fba14954ddbbac4c2a0bc26d192b1bc04a27f925e4d156503cc"
 
   url "https://github.com/vodongnhut/net-releases/releases/download/v#{version}/Net-#{version}-arm64-local.zip"
   name "Nét"
